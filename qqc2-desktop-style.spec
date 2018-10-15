@@ -5,22 +5,22 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : qqc2-desktop-style
-Version  : 5.50.0
-Release  : 2
-URL      : https://download.kde.org/stable/frameworks/5.50/qqc2-desktop-style-5.50.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.50/qqc2-desktop-style-5.50.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.50/qqc2-desktop-style-5.50.0.tar.xz.sig
+Version  : 5.51.0
+Release  : 3
+URL      : https://download.kde.org/stable/frameworks/5.51/qqc2-desktop-style-5.51.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.51/qqc2-desktop-style-5.51.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.51/qqc2-desktop-style-5.51.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-3.0
-Requires: qqc2-desktop-style-lib
-Requires: qqc2-desktop-style-license
+Requires: qqc2-desktop-style-lib = %{version}-%{release}
+Requires: qqc2-desktop-style-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kirigami2-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : pkg-config
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
 # QQC2StyleBridge
@@ -29,8 +29,8 @@ QtQuickControls 2 style that uses QWidget's QStyle for painting
 %package dev
 Summary: dev components for the qqc2-desktop-style package.
 Group: Development
-Requires: qqc2-desktop-style-lib
-Provides: qqc2-desktop-style-devel
+Requires: qqc2-desktop-style-lib = %{version}-%{release}
+Provides: qqc2-desktop-style-devel = %{version}-%{release}
 
 %description dev
 dev components for the qqc2-desktop-style package.
@@ -39,7 +39,7 @@ dev components for the qqc2-desktop-style package.
 %package lib
 Summary: lib components for the qqc2-desktop-style package.
 Group: Libraries
-Requires: qqc2-desktop-style-license
+Requires: qqc2-desktop-style-license = %{version}-%{release}
 
 %description lib
 lib components for the qqc2-desktop-style package.
@@ -54,26 +54,26 @@ license components for the qqc2-desktop-style package.
 
 
 %prep
-%setup -q -n qqc2-desktop-style-5.50.0
+%setup -q -n qqc2-desktop-style-5.51.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536438327
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1539642999
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1536438327
+export SOURCE_DATE_EPOCH=1539642999
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/qqc2-desktop-style
-cp LICENSE.GPL-2 %{buildroot}/usr/share/doc/qqc2-desktop-style/LICENSE.GPL-2
-cp LICENSE.LGPL-3 %{buildroot}/usr/share/doc/qqc2-desktop-style/LICENSE.LGPL-3
+mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
+cp LICENSE.GPL-2 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/LICENSE.GPL-2
+cp LICENSE.LGPL-3 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/LICENSE.LGPL-3
 pushd clr-build
 %make_install
 popd
@@ -135,6 +135,6 @@ popd
 /usr/lib64/qt5/qml/org/kde/qqc2desktopstyle/private/qmldir
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/qqc2-desktop-style/LICENSE.GPL-2
-/usr/share/doc/qqc2-desktop-style/LICENSE.LGPL-3
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/qqc2-desktop-style/LICENSE.GPL-2
+/usr/share/package-licenses/qqc2-desktop-style/LICENSE.LGPL-3
