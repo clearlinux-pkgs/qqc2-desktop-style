@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : qqc2-desktop-style
-Version  : 5.53.0
-Release  : 6
-URL      : https://download.kde.org/stable/frameworks/5.53/qqc2-desktop-style-5.53.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.53/qqc2-desktop-style-5.53.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.53/qqc2-desktop-style-5.53.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 5.54.0
+Release  : 7
+URL      : https://download.kde.org/stable/frameworks/5.54/qqc2-desktop-style-5.54.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.54/qqc2-desktop-style-5.54.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.54/qqc2-desktop-style-5.54.0.tar.xz.sig
+Summary  : A style for Qt Quick Controls 2 to make it follow your desktop theme
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-3.0
 Requires: qqc2-desktop-style-lib = %{version}-%{release}
@@ -54,14 +54,14 @@ license components for the qqc2-desktop-style package.
 
 
 %prep
-%setup -q -n qqc2-desktop-style-5.53.0
+%setup -q -n qqc2-desktop-style-5.54.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1544545471
+export SOURCE_DATE_EPOCH=1547330361
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -69,7 +69,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1544545471
+export SOURCE_DATE_EPOCH=1547330361
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
 cp LICENSE.GPL-2 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/LICENSE.GPL-2
