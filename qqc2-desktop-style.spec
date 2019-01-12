@@ -6,7 +6,7 @@
 #
 Name     : qqc2-desktop-style
 Version  : 5.53.0
-Release  : 5
+Release  : 6
 URL      : https://download.kde.org/stable/frameworks/5.53/qqc2-desktop-style-5.53.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.53/qqc2-desktop-style-5.53.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.53/qqc2-desktop-style-5.53.0.tar.xz.sig
