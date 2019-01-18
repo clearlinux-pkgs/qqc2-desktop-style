@@ -6,7 +6,7 @@
 #
 Name     : qqc2-desktop-style
 Version  : 5.54.0
-Release  : 7
+Release  : 8
 URL      : https://download.kde.org/stable/frameworks/5.54/qqc2-desktop-style-5.54.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.54/qqc2-desktop-style-5.54.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.54/qqc2-desktop-style-5.54.0.tar.xz.sig
