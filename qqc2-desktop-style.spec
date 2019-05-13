@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : qqc2-desktop-style
-Version  : 5.57.0
-Release  : 13
-URL      : https://download.kde.org/stable/frameworks/5.57/qqc2-desktop-style-5.57.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.57/qqc2-desktop-style-5.57.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.57/qqc2-desktop-style-5.57.0.tar.xz.sig
+Version  : 5.58.0
+Release  : 14
+URL      : https://download.kde.org/stable/frameworks/5.58/qqc2-desktop-style-5.58.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.58/qqc2-desktop-style-5.58.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.58/qqc2-desktop-style-5.58.0.tar.xz.sig
 Summary  : A style for Qt Quick Controls 2 to make it follow your desktop theme
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-3.0
@@ -34,6 +34,7 @@ Group: Development
 Requires: qqc2-desktop-style-lib = %{version}-%{release}
 Provides: qqc2-desktop-style-devel = %{version}-%{release}
 Requires: qqc2-desktop-style = %{version}-%{release}
+Requires: qqc2-desktop-style = %{version}-%{release}
 
 %description dev
 dev components for the qqc2-desktop-style package.
@@ -57,14 +58,14 @@ license components for the qqc2-desktop-style package.
 
 
 %prep
-%setup -q -n qqc2-desktop-style-5.57.0
+%setup -q -n qqc2-desktop-style-5.58.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557048260
+export SOURCE_DATE_EPOCH=1557789739
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -79,7 +80,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557048260
+export SOURCE_DATE_EPOCH=1557789739
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
 cp LICENSE.GPL-2 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/LICENSE.GPL-2
