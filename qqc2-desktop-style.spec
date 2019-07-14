@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : qqc2-desktop-style
-Version  : 5.59.0
-Release  : 15
-URL      : https://download.kde.org/stable/frameworks/5.59/qqc2-desktop-style-5.59.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.59/qqc2-desktop-style-5.59.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.59/qqc2-desktop-style-5.59.0.tar.xz.sig
+Version  : 5.60.0
+Release  : 16
+URL      : https://download.kde.org/stable/frameworks/5.60/qqc2-desktop-style-5.60.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.60/qqc2-desktop-style-5.60.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.60/qqc2-desktop-style-5.60.0.tar.xz.sig
 Summary  : A style for Qt Quick Controls 2 to make it follow your desktop theme
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-3.0
@@ -58,16 +58,17 @@ license components for the qqc2-desktop-style package.
 
 
 %prep
-%setup -q -n qqc2-desktop-style-5.59.0
+%setup -q -n qqc2-desktop-style-5.60.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1560027725
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1563065773
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -76,11 +77,11 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1560027725
+export SOURCE_DATE_EPOCH=1563065773
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
 cp LICENSE.GPL-2 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/LICENSE.GPL-2
@@ -120,6 +121,7 @@ popd
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/Menu.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/MenuBarItem.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/MenuItem.qml
+/usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/MenuSeparator.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/Popup.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/ProgressBar.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/RadioButton.qml
