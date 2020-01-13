@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : qqc2-desktop-style
-Version  : 5.65.0
-Release  : 22
-URL      : https://download.kde.org/stable/frameworks/5.65/qqc2-desktop-style-5.65.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.65/qqc2-desktop-style-5.65.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.65/qqc2-desktop-style-5.65.0.tar.xz.sig
+Version  : 5.66.0
+Release  : 23
+URL      : https://download.kde.org/stable/frameworks/5.66/qqc2-desktop-style-5.66.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.66/qqc2-desktop-style-5.66.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.66/qqc2-desktop-style-5.66.0.tar.xz.sig
 Summary  : A style for Qt Quick Controls 2 to make it follow your desktop theme
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-3.0
@@ -56,15 +56,15 @@ license components for the qqc2-desktop-style package.
 
 
 %prep
-%setup -q -n qqc2-desktop-style-5.65.0
-cd %{_builddir}/qqc2-desktop-style-5.65.0
+%setup -q -n qqc2-desktop-style-5.66.0
+cd %{_builddir}/qqc2-desktop-style-5.66.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1576527443
+export SOURCE_DATE_EPOCH=1578944912
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -81,11 +81,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1576527443
+export SOURCE_DATE_EPOCH=1578944912
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
-cp %{_builddir}/qqc2-desktop-style-5.65.0/LICENSE.GPL-2 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/qqc2-desktop-style-5.65.0/LICENSE.LGPL-3 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4b9b50cade3fd0958dc5ef57317ff9129ce2d3cb
+cp %{_builddir}/qqc2-desktop-style-5.66.0/LICENSE.GPL-2 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/qqc2-desktop-style-5.66.0/LICENSE.LGPL-3 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4b9b50cade3fd0958dc5ef57317ff9129ce2d3cb
 pushd clr-build
 %make_install
 popd
