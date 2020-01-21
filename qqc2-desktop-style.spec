@@ -6,11 +6,11 @@
 #
 Name     : qqc2-desktop-style
 Version  : 5.66.0
-Release  : 23
+Release  : 24
 URL      : https://download.kde.org/stable/frameworks/5.66/qqc2-desktop-style-5.66.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.66/qqc2-desktop-style-5.66.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/5.66/qqc2-desktop-style-5.66.0.tar.xz.sig
-Summary  : A style for Qt Quick Controls 2 to make it follow your desktop theme
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-3.0
 Requires: qqc2-desktop-style-lib = %{version}-%{release}
@@ -31,7 +31,6 @@ Summary: dev components for the qqc2-desktop-style package.
 Group: Development
 Requires: qqc2-desktop-style-lib = %{version}-%{release}
 Provides: qqc2-desktop-style-devel = %{version}-%{release}
-Requires: qqc2-desktop-style = %{version}-%{release}
 Requires: qqc2-desktop-style = %{version}-%{release}
 
 %description dev
@@ -64,10 +63,9 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1578944912
+export SOURCE_DATE_EPOCH=1579631127
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -81,7 +79,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1578944912
+export SOURCE_DATE_EPOCH=1579631127
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
 cp %{_builddir}/qqc2-desktop-style-5.66.0/LICENSE.GPL-2 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4cc77b90af91e615a64ae04893fdffa7939db84c
@@ -102,6 +100,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/qt5/plugins/kf5/kirigami/org.kde.desktop.so
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/BusyIndicator.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/Button.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/CheckBox.qml
