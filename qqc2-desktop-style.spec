@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : qqc2-desktop-style
-Version  : 5.67.0
-Release  : 25
-URL      : https://download.kde.org/stable/frameworks/5.67/qqc2-desktop-style-5.67.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.67/qqc2-desktop-style-5.67.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.67/qqc2-desktop-style-5.67.0.tar.xz.sig
+Version  : 5.67.1
+Release  : 26
+URL      : https://download.kde.org/stable/frameworks/5.67/qqc2-desktop-style-5.67.1.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.67/qqc2-desktop-style-5.67.1.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.67/qqc2-desktop-style-5.67.1.tar.xz.sig
 Summary  : A style for Qt Quick Controls 2 to make it follow your desktop theme
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-3.0
@@ -56,15 +56,15 @@ license components for the qqc2-desktop-style package.
 
 
 %prep
-%setup -q -n qqc2-desktop-style-5.67.0
-cd %{_builddir}/qqc2-desktop-style-5.67.0
+%setup -q -n qqc2-desktop-style-5.67.1
+cd %{_builddir}/qqc2-desktop-style-5.67.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1581284280
+export SOURCE_DATE_EPOCH=1581380007
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -81,11 +81,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1581284280
+export SOURCE_DATE_EPOCH=1581380007
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
-cp %{_builddir}/qqc2-desktop-style-5.67.0/LICENSE.GPL-2 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/qqc2-desktop-style-5.67.0/LICENSE.LGPL-3 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4b9b50cade3fd0958dc5ef57317ff9129ce2d3cb
+cp %{_builddir}/qqc2-desktop-style-5.67.1/LICENSE.GPL-2 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/qqc2-desktop-style-5.67.1/LICENSE.LGPL-3 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4b9b50cade3fd0958dc5ef57317ff9129ce2d3cb
 pushd clr-build
 %make_install
 popd
@@ -102,6 +102,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/qt5/plugins/kf5/kirigami/org.kde.desktop.so
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/BusyIndicator.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/Button.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/CheckBox.qml
