@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : qqc2-desktop-style
-Version  : 5.69.0
-Release  : 28
-URL      : https://download.kde.org/stable/frameworks/5.69/qqc2-desktop-style-5.69.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.69/qqc2-desktop-style-5.69.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.69/qqc2-desktop-style-5.69.0.tar.xz.sig
+Version  : 5.70.0
+Release  : 29
+URL      : https://download.kde.org/stable/frameworks/5.70/qqc2-desktop-style-5.70.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.70/qqc2-desktop-style-5.70.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.70/qqc2-desktop-style-5.70.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-3.0
@@ -17,10 +17,14 @@ Requires: qqc2-desktop-style-lib = %{version}-%{release}
 Requires: qqc2-desktop-style-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules-data
+BuildRequires : kconfigwidgets-dev
+BuildRequires : kiconthemes-dev
 BuildRequires : kirigami2-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : pkg-config
 BuildRequires : qtbase-dev mesa-dev
+BuildRequires : qtx11extras-dev
 
 %description
 # QQC2StyleBridge
@@ -55,15 +59,15 @@ license components for the qqc2-desktop-style package.
 
 
 %prep
-%setup -q -n qqc2-desktop-style-5.69.0
-cd %{_builddir}/qqc2-desktop-style-5.69.0
+%setup -q -n qqc2-desktop-style-5.70.0
+cd %{_builddir}/qqc2-desktop-style-5.70.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1586972228
+export SOURCE_DATE_EPOCH=1589234547
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -79,12 +83,12 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1586972228
+export SOURCE_DATE_EPOCH=1589234547
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
-cp %{_builddir}/qqc2-desktop-style-5.69.0/LICENSE.GPL-2 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/qqc2-desktop-style-5.69.0/LICENSE.LGPL-3 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4b9b50cade3fd0958dc5ef57317ff9129ce2d3cb
-cp %{_builddir}/qqc2-desktop-style-5.69.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/qqc2-desktop-style-5.70.0/LICENSE.GPL-2 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/qqc2-desktop-style-5.70.0/LICENSE.LGPL-3 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4b9b50cade3fd0958dc5ef57317ff9129ce2d3cb
+cp %{_builddir}/qqc2-desktop-style-5.70.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/e458941548e0864907e654fa2e192844ae90fc32
 pushd clr-build
 %make_install
 popd
