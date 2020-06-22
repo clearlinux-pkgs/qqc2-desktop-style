@@ -6,7 +6,7 @@
 #
 Name     : qqc2-desktop-style
 Version  : 5.71.0
-Release  : 30
+Release  : 31
 URL      : https://download.kde.org/stable/frameworks/5.71/qqc2-desktop-style-5.71.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.71/qqc2-desktop-style-5.71.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/5.71/qqc2-desktop-style-5.71.0.tar.xz.sig
@@ -18,10 +18,14 @@ Requires: qqc2-desktop-style-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
+BuildRequires : kauth-dev
+BuildRequires : kcodecs-dev
 BuildRequires : kconfig-dev
 BuildRequires : kconfigwidgets-dev
+BuildRequires : kcoreaddons-dev
 BuildRequires : kiconthemes-dev
 BuildRequires : kirigami2-dev
+BuildRequires : kwidgetsaddons-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : pkg-config
 BuildRequires : qtbase-dev mesa-dev
@@ -68,7 +72,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1592247081
+export SOURCE_DATE_EPOCH=1592846290
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -80,11 +84,11 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1592247081
+export SOURCE_DATE_EPOCH=1592846290
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
 cp %{_builddir}/qqc2-desktop-style-5.71.0/LICENSE.GPL-2 %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/4cc77b90af91e615a64ae04893fdffa7939db84c
@@ -106,6 +110,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/qt5/plugins/kf5/kirigami/org.kde.desktop.so
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/BusyIndicator.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/Button.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/CheckBox.qml
