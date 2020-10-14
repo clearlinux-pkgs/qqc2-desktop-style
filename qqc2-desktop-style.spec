@@ -6,7 +6,7 @@
 #
 Name     : qqc2-desktop-style
 Version  : 5.75.0
-Release  : 33
+Release  : 34
 URL      : https://download.kde.org/stable/frameworks/5.75/qqc2-desktop-style-5.75.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.75/qqc2-desktop-style-5.75.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/5.75/qqc2-desktop-style-5.75.0.tar.xz.sig
@@ -71,7 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1602620333
+export SOURCE_DATE_EPOCH=1602634003
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -87,7 +87,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1602620333
+export SOURCE_DATE_EPOCH=1602634003
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
 cp %{_builddir}/qqc2-desktop-style-5.75.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/2a638514c87c4923c0570c55822620fad56f2a33
