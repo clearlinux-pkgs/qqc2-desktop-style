@@ -6,7 +6,7 @@
 #
 Name     : qqc2-desktop-style
 Version  : 5.87.0
-Release  : 45
+Release  : 46
 URL      : https://download.kde.org/stable/frameworks/5.87/qqc2-desktop-style-5.87.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.87/qqc2-desktop-style-5.87.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/5.87/qqc2-desktop-style-5.87.0.tar.xz.sig
@@ -72,7 +72,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1634416941
+export SOURCE_DATE_EPOCH=1634689624
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -88,7 +88,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1634416941
+export SOURCE_DATE_EPOCH=1634689624
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
 cp %{_builddir}/qqc2-desktop-style-5.87.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/2a638514c87c4923c0570c55822620fad56f2a33
@@ -114,6 +114,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/qt5/plugins/kf5/kirigami/org.kde.desktop.so
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/BusyIndicator.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/Button.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/CheckBox.qml
