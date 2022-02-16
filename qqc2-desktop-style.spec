@@ -6,7 +6,7 @@
 #
 Name     : qqc2-desktop-style
 Version  : 5.91.0
-Release  : 52
+Release  : 53
 URL      : https://download.kde.org/stable/frameworks/5.91/qqc2-desktop-style-5.91.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.91/qqc2-desktop-style-5.91.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/5.91/qqc2-desktop-style-5.91.0.tar.xz.sig
@@ -66,11 +66,16 @@ license components for the qqc2-desktop-style package.
 cd %{_builddir}/qqc2-desktop-style-5.91.0
 
 %build
+## build_prepend content
+# Make sure the package only builds if kiconthemes and kconfigwidgets have been updated first
+sed -i -r -e 's,(KF.?IconThemes \$\{KF.?_DEP_VERSION\})(.*\))$,\1 REQUIRED \2,' CMakeLists.txt
+sed -i -r -e 's,(KF.?ConfigWidgets \$\{KF.?_DEP_VERSION\})(.*\))$,\1 REQUIRED \2,' CMakeLists.txt
+## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1645037411
+export SOURCE_DATE_EPOCH=1645040055
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -86,7 +91,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1645037411
+export SOURCE_DATE_EPOCH=1645040055
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
 cp %{_builddir}/qqc2-desktop-style-5.91.0/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
