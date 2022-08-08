@@ -6,7 +6,7 @@
 #
 Name     : qqc2-desktop-style
 Version  : 5.96.0
-Release  : 122
+Release  : 123
 URL      : https://download.kde.org/stable/frameworks/5.96/qqc2-desktop-style-5.96.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.96/qqc2-desktop-style-5.96.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/5.96/qqc2-desktop-style-5.96.0.tar.xz.sig
@@ -75,7 +75,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1659719398
+export SOURCE_DATE_EPOCH=1659966764
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -91,7 +91,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1659719398
+export SOURCE_DATE_EPOCH=1659966764
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
 cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
