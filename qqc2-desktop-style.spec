@@ -6,7 +6,7 @@
 #
 Name     : qqc2-desktop-style
 Version  : 5.101.0
-Release  : 166
+Release  : 167
 URL      : https://download.kde.org/stable/frameworks/5.101/qqc2-desktop-style-5.101.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.101/qqc2-desktop-style-5.101.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/5.101/qqc2-desktop-style-5.101.0.tar.xz.sig
@@ -28,6 +28,9 @@ BuildRequires : kwidgetsaddons-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86vm-dev
 BuildRequires : pkg-config
 BuildRequires : qtx11extras-dev
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 # QQC2StyleBridge
@@ -75,33 +78,33 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1672076236
+export SOURCE_DATE_EPOCH=1672683150
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1672076236
+export SOURCE_DATE_EPOCH=1672683150
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
-cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
-cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/757b86330df80f81143d5916b3e92b4bcb1b1890
-cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
+cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/2a638514c87c4923c0570c55822620fad56f2a33 || :
+cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/e712eadfab0d2357c0f50f599ef35ee0d87534cb || :
+cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/6091db0aead0d90182b93d3c0d09ba93d188f907 || :
+cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/20079e8f79713dce80ab09774505773c926afa2a || :
+cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/757b86330df80f81143d5916b3e92b4bcb1b1890 || :
+cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/e458941548e0864907e654fa2e192844ae90fc32 || :
+cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/e458941548e0864907e654fa2e192844ae90fc32 || :
 pushd clr-build
 %make_install
 popd
