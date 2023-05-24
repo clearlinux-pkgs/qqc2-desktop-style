@@ -6,11 +6,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : qqc2-desktop-style
-Version  : 5.105.0
-Release  : 211
-URL      : https://download.kde.org/stable/frameworks/5.105/qqc2-desktop-style-5.105.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.105/qqc2-desktop-style-5.105.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.105/qqc2-desktop-style-5.105.0.tar.xz.sig
+Version  : 5.106.0
+Release  : 212
+URL      : https://download.kde.org/stable/frameworks/5.106/qqc2-desktop-style-5.106.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.106/qqc2-desktop-style-5.106.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.106/qqc2-desktop-style-5.106.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-3.0
@@ -66,20 +66,20 @@ license components for the qqc2-desktop-style package.
 
 
 %prep
-%setup -q -n qqc2-desktop-style-5.105.0
-cd %{_builddir}/qqc2-desktop-style-5.105.0
+%setup -q -n qqc2-desktop-style-5.106.0
+cd %{_builddir}/qqc2-desktop-style-5.106.0
 
 %build
 ## build_prepend content
 # Make sure the package only builds if kiconthemes and kconfigwidgets have been updated first
-sed -i -r -e 's,(KF.?IconThemes \$\{KF.?_DEP_VERSION\})(.*\))$,\1 REQUIRED \2,' CMakeLists.txt
-sed -i -r -e 's,(KF.?ConfigWidgets \$\{KF.?_DEP_VERSION\})(.*\))$,\1 REQUIRED \2,' CMakeLists.txt
+sed -i -r -e 's,(KF.?IconThemes \$\{KF.?_DEP_VERSION\})(.*\))$,\1 REQUIRED \2,' CMakeLists.txt || :
+sed -i -r -e 's,(KF.?ConfigWidgets \$\{KF.?_DEP_VERSION\})(.*\))$,\1 REQUIRED \2,' CMakeLists.txt || :
 ## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683035530
+export SOURCE_DATE_EPOCH=1684953479
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -93,9 +93,31 @@ export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonl
 %cmake ..
 make  %{?_smp_mflags}
 popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+## build_prepend content
+# Make sure the package only builds if kiconthemes and kconfigwidgets have been updated first
+sed -i -r -e 's,(KF.?IconThemes \$\{KF.?_DEP_VERSION\})(.*\))$,\1 REQUIRED \2,' CMakeLists.txt || :
+sed -i -r -e 's,(KF.?ConfigWidgets \$\{KF.?_DEP_VERSION\})(.*\))$,\1 REQUIRED \2,' CMakeLists.txt || :
+## build_prepend end
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+%cmake ..
+make  %{?_smp_mflags}
+popd
 
 %install
-export SOURCE_DATE_EPOCH=1683035530
+export SOURCE_DATE_EPOCH=1684953479
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qqc2-desktop-style
 cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
@@ -106,9 +128,13 @@ cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/LGPL-2.0-or-later.txt %{b
 cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/757b86330df80f81143d5916b3e92b4bcb1b1890 || :
 cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/e458941548e0864907e654fa2e192844ae90fc32 || :
 cp %{_builddir}/qqc2-desktop-style-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/qqc2-desktop-style/e458941548e0864907e654fa2e192844ae90fc32 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -122,6 +148,8 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/qt5/plugins/kf5/kirigami/org.kde.desktop.so
+/V3/usr/lib64/qt5/qml/org/kde/qqc2desktopstyle/private/libqqc2desktopstyleplugin.so
 /usr/lib64/qt5/plugins/kf5/kirigami/org.kde.desktop.so
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/BusyIndicator.qml
 /usr/lib64/qt5/qml/QtQuick/Controls.2/org.kde.desktop/Button.qml
