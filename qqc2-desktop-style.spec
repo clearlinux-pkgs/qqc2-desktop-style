@@ -9,7 +9,7 @@
 #
 Name     : qqc2-desktop-style
 Version  : 6.5.0
-Release  : 272
+Release  : 273
 URL      : https://download.kde.org/stable/frameworks/6.5/qqc2-desktop-style-6.5.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/6.5/qqc2-desktop-style-6.5.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/6.5/qqc2-desktop-style-6.5.0.tar.xz.sig
